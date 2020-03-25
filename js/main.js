@@ -1,7 +1,11 @@
+
+const $ = s => document.querySelector(s)
+const $$ = s => document.querySelectorAll(s)
+
 const isMain = str => (/^#{1,2}(?!#)/).test(str)
 const isSub = str => (/^#{3}(?!#)/).test(str)
 
-function convert(raw) {
+const convert = (raw)=> {
 
   let arr = raw.split(/\n(?=\s*#)/).filter(s => s !== '').map(s => s.trim())
   console.log(arr);
@@ -104,3 +108,82 @@ function start() {
     ]
   });
 }
+
+const Menu ={
+  init(){
+    this.$settingIcon = $('.control .icon-setting')
+    this.$menu = $('.menu')
+    this.$closeIcon = $('.icon-close')
+    this.$$tabs = $$('.menu .tab')
+    this.$$contents = $$('.menu .content')
+    this.bind()
+  },
+  bind(){
+    this.$settingIcon.onclick = ()=>{
+      this.$menu.classList.add('open')
+    }
+    this.$closeIcon.onclick = ()=>{
+      this.$menu.classList.remove('open')
+    }
+    this.$$tabs.forEach($tab => $tab.onclick=()=>{
+      this.$$tabs.forEach($node =>
+        $node.classList.remove('active'))
+        $tab.classList.add('active')
+        let index = [...this.$$tabs].indexOf($tab)
+        this.$$contents.forEach($content=>{
+          $content.classList.remove('active')
+          this.$$contents[index].classList.add('active')
+        })
+      
+    })
+  }
+}
+
+const Editor ={
+  init(){
+    console.log('Editor init');
+    this.$editInput = $('.editor textarea')
+    this.$saveBtn = $('.editor .button-save')
+    this.markdown = localStorage.markdown || `# one slide`
+    this.$slideContainer = $('.slides')
+
+    this.bind()
+    this.start()
+  },
+  bind(){
+    this.$saveBtn.onclick = ()=>{
+      localStorage.markdown = this.$editInput.value
+      location.reload()
+    }
+  },
+  start(){
+    this.$editInput.innerHTML = this.markdown
+    this.$slideContainer.innerHTML = convert(this.markdown)
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      center: true,
+      hash: true,
+  
+      transition: 'slide', // none/fade/slide/convex/concave/zoom
+  
+      // More info https://github.com/hakimel/reveal.js#dependencies
+      dependencies: [
+        { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+        { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+        { src: 'plugin/highlight/highlight.js' },
+        { src: 'plugin/search/search.js', async: true },
+        { src: 'plugin/zoom-js/zoom.js', async: true },
+        { src: 'plugin/notes/notes.js', async: true }
+      ]
+    });
+  }
+}
+
+const App = {
+  init(){
+    [...arguments].forEach(Module=>Module.init())
+  }
+}
+
+App.init(Menu,Editor)
