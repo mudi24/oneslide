@@ -6,10 +6,7 @@ const isMain = str => (/^#{1,2}(?!#)/).test(str)
 const isSub = str => (/^#{3}(?!#)/).test(str)
 
 const convert = (raw)=> {
-
   let arr = raw.split(/\n(?=\s*#)/).filter(s => s !== '').map(s => s.trim())
-  console.log(arr);
-
   let html = ''
   for (let i = 0; i < arr.length; i++) {
 
@@ -76,38 +73,6 @@ const convert = (raw)=> {
   }
   return html
 }
-function loadMarkdown(raw) {
-  localStorage.markdown = convert(raw)
-
-  location.reload()
-
-}
-
-function start() {
-  let TPL = '# My Slide'
-  let html = convert(localStorage.markdown || TPL)
-
-
-  document.querySelector('.slides').innerHTML = html
-  Reveal.initialize({
-    controls: true,
-    progress: true,
-    center: true,
-    hash: true,
-
-    transition: 'slide', // none/fade/slide/convex/concave/zoom
-
-    // More info https://github.com/hakimel/reveal.js#dependencies
-    dependencies: [
-      { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
-      { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
-      { src: 'plugin/highlight/highlight.js' },
-      { src: 'plugin/search/search.js', async: true },
-      { src: 'plugin/zoom-js/zoom.js', async: true },
-      { src: 'plugin/notes/notes.js', async: true }
-    ]
-  });
-}
 
 const Menu ={
   init(){
@@ -141,7 +106,6 @@ const Menu ={
 
 const Editor ={
   init(){
-    console.log('Editor init');
     this.$editInput = $('.editor textarea')
     this.$saveBtn = $('.editor .button-save')
     this.markdown = localStorage.markdown || `# one slide`
@@ -180,10 +144,39 @@ const Editor ={
   }
 }
 
+const Theme = {
+  init(){
+    this.$$figures = $$('.theme figure')
+
+    this.bind()
+    this.loadTheme()
+  },
+  bind(){
+    this.$$figures.forEach($figure => $figure.onclick = () => {
+      this.$$figures.forEach($item => $item.classList.remove('select'))
+      $figure.classList.add('select')
+      this.setTheme($figure.dataset.theme)
+    })
+  },
+  setTheme(theme){
+    localStorage.theme = theme
+    location.reload()
+  },
+  loadTheme(){
+    let theme = localStorage.theme || 'beige' 
+    let $link = document.createElement('link')
+    $link.rel = 'stylesheet'
+    $link.href = `css/theme/${theme}.css`
+    document.head.appendChild($link)
+
+    Array.from(this.$$figures).find($figure => $figure.dataset.theme === theme).classList.add('select')
+  }
+}
+
 const App = {
   init(){
     [...arguments].forEach(Module=>Module.init())
   }
 }
 
-App.init(Menu,Editor)
+App.init(Menu,Editor,Theme)

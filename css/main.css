@@ -82,14 +82,13 @@ button:hover{
   z-index: 999;
   top: 0;
   left: 180px;
-  /* display: none; */
   width: calc(100vw - 180px);
   height: 100vh;
   background: #212a29;
   padding-bottom: 60px;
   font-size: 14px;
   transform: translateX(calc(100% + 180px)); 
-  overflow: scroll;
+  overflow: auto;
   transition: transform .3s;
 }
 .menu.open .content.active{
@@ -114,4 +113,36 @@ button:hover{
 }
 .menu .content button{
   margin-top: 16px;
+}
+.menu .themes{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.menu .theme h5{
+  margin-top: 30px;
+}
+.menu .themes figure{
+  margin-top: 30px;
+  text-align: center;
+  border: 4px solid transparent;
+  cursor: pointer;
+  transition:  .3s;
+  opacity: .7;
+}
+.menu .themes figure.select{
+  opacity: 1;
+  border: 4px solid #fff;
+}
+.menu .themes figure img{
+  width: 200px;
+  height: 150px;
+}
+
+.menu .themes figcaption{
+  padding: 10px;
+}
+.menu .theme .transition,
+.menu .theme .align {
+  margin-top: 20px;
 }
