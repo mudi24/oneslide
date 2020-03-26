@@ -6,7 +6,8 @@ const isMain = str => (/^#{1,2}(?!#)/).test(str)
 const isSub = str => (/^#{3}(?!#)/).test(str)
 
 const convert = (raw)=> {
-  let arr = raw.split(/\n(?=\s*#)/).filter(s => s !== '').map(s => s.trim())
+  let arr = raw.split(/\n(?=\s*#{1,3}[^#])/).filter(s => s !== '').map(s => s.trim())
+  
   let html = ''
   for (let i = 0; i < arr.length; i++) {
 
@@ -126,10 +127,10 @@ const Editor ={
     Reveal.initialize({
       controls: true,
       progress: true,
-      center: true,
+      center: localStorage.align === 'left-top' ? false : true,
       hash: true,
   
-      transition: 'slide', // none/fade/slide/convex/concave/zoom
+      transition: localStorage.transition || 'slide', // none/fade/slide/convex/concave/zoom
   
       // More info https://github.com/hakimel/reveal.js#dependencies
       dependencies: [
@@ -147,6 +148,9 @@ const Editor ={
 const Theme = {
   init(){
     this.$$figures = $$('.theme figure')
+    this.$transition = $('.theme .transition')
+    this.$align = $('.theme .align')
+    this.$reveal = $('.reveal')
 
     this.bind()
     this.loadTheme()
@@ -157,6 +161,15 @@ const Theme = {
       $figure.classList.add('select')
       this.setTheme($figure.dataset.theme)
     })
+
+    this.$transition.onchange = function(){
+      localStorage.transition = this.value
+      location.reload()
+    }
+    this.$align.onchange = function(){
+      localStorage.align =  this.value
+      location.reload()
+    }
   },
   setTheme(theme){
     localStorage.theme = theme
@@ -170,6 +183,9 @@ const Theme = {
     document.head.appendChild($link)
 
     Array.from(this.$$figures).find($figure => $figure.dataset.theme === theme).classList.add('select')
+    this.$transition.value = localStorage.transition || 'slide'
+    this.$align.value = localStorage.align || 'center'
+    this.$reveal.classList.add(this.$align.value)
   }
 }
 
