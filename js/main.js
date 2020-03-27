@@ -1,16 +1,4 @@
 
-// AV.init({
-//   appId: "1gg3IGShxRHk4dkECl1ue9dh-gzGzoHsz",
-//   appKey: "zgwk0WMUPariQhAVrsQrnTFi",
-//   serverURLs: "https://1gg3igsh.lc-cn-n1-shared.com"
-// });
-
-// var avatarUpload = document.getElementById('avatar-upload');
-// if (avatarUpload.files.length) {
-//   var localFile = avatarUpload.files[0];
-//   var file = new AV.File('avatar.jpg', localFile);
-// }
-
 
 const $ = s => document.querySelector(s)
 const $$ = s => document.querySelectorAll(s)
@@ -136,7 +124,6 @@ const ImgUploader = {
     this.$fileInput.onchange = function(){
       if(this.files.length > 0){
         let localFile = this.files[0]
-        console.log(localFile);
         if(localFile.size/1048576 > 2){
           alert('文件不能超过2M')
           return
@@ -150,7 +137,6 @@ const ImgUploader = {
           }
         }).then(file => {
           console.log('文件保存完成');
-          console.log(file);
           // 高度固定，宽度为自身宽度
           let text = `![${file.attributes.name}](${file.attributes.url}?imageView2/0/w/800/h/400)`
           self.insertText(text)

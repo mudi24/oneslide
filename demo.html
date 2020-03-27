@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>reveal.js – The HTML Presentation Framework</title>
+  <title>OneSlide——极简Markdown</title>
 
   <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
   <meta name="author" content="Hakim El Hattab">
@@ -21,16 +21,16 @@
   <!-- Theme used for syntax highlighting of code -->
   <link rel="stylesheet" href="lib/css/monokai.css">
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1712809_5dv6yx3p9q.css">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1712809_mg7ucpbz29.css">
 
   <!-- Printing and PDF exports -->
-  <script>
+  <!-- <script>
     var link = document.createElement('link');
     link.rel = 'stylesheet';
     link.type = 'text/css';
     link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
     document.getElementsByTagName('head')[0].appendChild(link);
-  </script>
+  </script> -->
 
   <!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
@@ -133,6 +133,12 @@
           <p>下载PDF</p>
         </div>
       </div>
+      <div class="content">
+        <div class="header">演讲者模式</div>
+        <div class="body speaker">
+          <p>按 <strong>S</strong> 键， 开启演讲者模式</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="reveal">
@@ -146,12 +152,9 @@
   </div>
   <!-- 存储服务 -->
   <script src="//cdn.jsdelivr.net/npm/leancloud-storage@4.5.1/dist/av-min.js"></script>
-  <!-- 即时通讯服务 -->
-  <script src="//cdn.jsdelivr.net/npm/leancloud-realtime@5.0.0-rc.1/dist/im-browser.min.js"></script>
+
   <script src="js/reveal.js"></script>
   <script src="js/main.js"></script>
-
-
 </body>
 
 </html>
