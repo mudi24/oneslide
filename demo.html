@@ -52,6 +52,10 @@
         <div class="header">编辑</div>
         <div class="body editor">
           <textarea></textarea>
+          <div class="uploader">
+            <input type="file" id="img-uploader" accept="image/*">
+            <label for="img-uploader">点击上传图片（支持.png、.jpg、.gif，最大2M）</label>
+          </div>
           <div>
             <button class="button-save">保存</button>
           </div>
@@ -135,17 +139,15 @@
 
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
-      <!-- <section>
-        <h2>1页</h2>
-      </section>
-      <section>
-        <h2>2页</h2>
-      </section> -->
+
 
     </div>
 
   </div>
-
+  <!-- 存储服务 -->
+  <script src="//cdn.jsdelivr.net/npm/leancloud-storage@4.5.1/dist/av-min.js"></script>
+  <!-- 即时通讯服务 -->
+  <script src="//cdn.jsdelivr.net/npm/leancloud-realtime@5.0.0-rc.1/dist/im-browser.min.js"></script>
   <script src="js/reveal.js"></script>
   <script src="js/main.js"></script>
 
