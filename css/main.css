@@ -37,6 +37,10 @@ button:hover{
   margin: 16px;
   display: inline-block;
   cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #666;
+  padding: 8px;
+  background: #666;
 }
 .control:hover{
   opacity: 1;

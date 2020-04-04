@@ -1,5 +1,3 @@
-
-
 const $ = s => document.querySelector(s)
 const $$ = s => document.querySelectorAll(s)
 
@@ -160,7 +158,40 @@ const Editor ={
   init(){
     this.$editInput = $('.editor textarea')
     this.$saveBtn = $('.editor .button-save')
-    this.markdown = localStorage.markdown || `# one slide`
+    this.initialValue = `# One Slide
+**把做PPT变成像呼吸一样简单**
+
+*如果你想直接开始使用，请把鼠标放在**页面顶部**，点击设置按钮开始编辑。*
+
+## 特点
+- 效率
+- 美观
+- 极致体验
+
+## 如何使用
+
+### 第一步
+鼠标放在页面顶部，点击设置按钮
+
+### 第二步
+点击侧边栏内容编辑
+
+### 第三步
+用**markdown语法**编辑内容，其中
+- 一级标题#是PPT封面的大标题
+- 二级标题##是PPT一级页面标题
+- 三级标题###是PPT二级子页面标题
+- 更多markdown语法请点击设置中的**帮助选项**查看
+### 第四步
+点击保存，即可预览
+
+## 更多功能
+- 更换主题
+- 演讲者模式（按S）
+- 全屏模式（按F）
+- PDF下载
+      `
+    this.markdown = localStorage.markdown || this.initialValue
     this.$slideContainer = $('.slides')
 
     this.bind()
@@ -227,7 +258,7 @@ const Theme = {
     location.reload()
   },
   loadTheme(){
-    let theme = localStorage.theme || 'beige' 
+    let theme = localStorage.theme || 'league' 
     let $link = document.createElement('link')
     $link.rel = 'stylesheet'
     $link.href = `css/theme/${theme}.css`
