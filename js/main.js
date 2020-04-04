@@ -159,14 +159,14 @@ const Editor ={
     this.$editInput = $('.editor textarea')
     this.$saveBtn = $('.editor .button-save')
     this.initialValue = `# One Slide
-**把做PPT变成像呼吸一样简单**
+__把做PPT变成像呼吸一样简单__
 
 *如果你想直接开始使用，请把鼠标放在**页面顶部**，点击设置按钮开始编辑。*
 
 ## 特点
-- 效率
+* 效率
 - 美观
-- 极致体验
++ 极致体验
 
 ## 如何使用
 

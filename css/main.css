@@ -3,7 +3,7 @@
 }
 button{
   background: #48484e;
-  padding: 6px 8px;
+  padding: 6px 12px;
   color: #d9dfdf;
   border-radius: 4px;
   border: none;
@@ -74,6 +74,7 @@ button:hover{
 }
 .menu .detail{
   margin-top: 50px;
+  font-size: 14px;
 }
 .menu .detail .tab{
   display: flex;
@@ -85,7 +86,7 @@ button:hover{
   color: #fff;
 }
 .menu .detail .iconfont{
-  margin-right:2px
+  margin-right: 6px
 }
 .menu .content{
   position: absolute;
@@ -96,7 +97,7 @@ button:hover{
   height: 100vh;
   background: #212a29;
   padding-bottom: 60px;
-  font-size: 14px;
+  font-size: 16px;
   transform: translateX(calc(100% + 180px)); 
   overflow: auto;
   transition: transform .3s;
@@ -117,9 +118,11 @@ button:hover{
   height: 400px;
   padding: 10px;
   background: #283231;
-  color: #aaa;
+  /* color: #aaa; */
+  color: #fff;
   border: none;
   outline: none;
+  font-size: 16px;
 }
 .menu .editor [type=file]{
   display: none;
@@ -130,9 +133,11 @@ button:hover{
 }
 .menu .editor label{
   cursor: pointer;
+  color: skyblue;
 }
 .menu .content button{
   margin-top: 16px;
+  font-size: 16px;
 }
 .menu .themes{
   display: flex;
@@ -141,6 +146,7 @@ button:hover{
 }
 .menu .theme h5{
   margin-top: 30px;
+  font-size: 24px;
 }
 .menu .themes figure{
   margin-top: 30px;
@@ -165,4 +171,23 @@ button:hover{
 .menu .theme .transition,
 .menu .theme .align {
   margin-top: 20px;
+  width: 60px;
+  height: 30px;
+  font-size: 16px;
+}
+.menu .content .help p{
+  color: skyblue;
+  font-size: 20px;
+}
+.menu .content .help ul{
+  margin: 20px 50px;
+  color: #fff;
+}
+.menu .content .help li{
+ padding: 8px;
+ font-size: 16px;
+}
+.menu .content .help strong{
+  color: skyblue;
+  font-weight: bold;
 }
